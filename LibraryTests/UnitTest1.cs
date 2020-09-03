@@ -1,4 +1,3 @@
-using System;
 using LibraryProgram;
 using Xunit;
 
@@ -35,7 +34,6 @@ namespace LibraryTests
             removeLibrary.Add("Harry Potter");
             removeLibrary.Add("GoT");
 
-
             // Act
             bool result = removeLibrary.Remove(1);
 
@@ -43,6 +41,5 @@ namespace LibraryTests
             Assert.True(result);
             Assert.Equal(new[] { "book", "GoT" }, removeLibrary);
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace LibraryProgram
+﻿namespace LibraryProgram
 {
     public class Author
     {
