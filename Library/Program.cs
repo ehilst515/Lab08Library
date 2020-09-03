@@ -153,7 +153,7 @@ namespace LibraryProgram
             Book book = new Book()
             {
                 Title = title,
-                Author = new Author(firstName, lastName)
+                Author = new Author
                 {
                     FirstName = firstName,
                     LastName = lastName
@@ -177,7 +177,7 @@ namespace LibraryProgram
             Book book = new Book()
             {
                 Title = title,
-                Author = new Author(firstName, lastName)
+                Author = new Author
                 {
                     FirstName = firstName,
                     LastName = lastName
