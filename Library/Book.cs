@@ -18,7 +18,8 @@ namespace LibraryProgram
         Fantasy,
         Nonficiton,
         ComicBook,
-        ScienceFiction
+        ScienceFiction,
+        Fiction
 
     }
 }
