@@ -11,11 +11,13 @@ namespace LibraryProgram
         static void Main(string[] args)
         {
             Library = new Library<Book>();
+            StarterBooks();
+
+            Console.WriteLine("Welcome to the library!");
 
             start:
 
-            Console.WriteLine("Welcome to the library!");
-            Console.WriteLine("Enter a number with the corresponding command; 1: View Books, 2: Add a book");
+            Console.WriteLine("Enter a number with the corresponding command; 1: View Books, 2: Add a book, 3: Remove a book");
             string input = Console.ReadLine();
 
             if (input == "1")
@@ -25,7 +27,7 @@ namespace LibraryProgram
             }
 
 
-            if (input == "2")
+            else if (input == "2")
             {
                 Console.WriteLine("Enter book title:");
                 string inputTitle = Console.ReadLine();
@@ -44,29 +46,45 @@ namespace LibraryProgram
                 string inputGenre = Console.ReadLine();
                 int numberGenre = Convert.ToInt32(inputGenre);
 
-                AddABook(inputTitle, inputAuthorFirst, inputAuthorLast, numberNumberOfPages, Genre.Fantasy);
+                AddABook(inputTitle, inputAuthorFirst, inputAuthorLast, numberNumberOfPages, (Genre)numberGenre);
 
                 Console.Clear();
 
                 Console.WriteLine("Book added! Updated Library: ");
                 LoadBooks();
 
+                Console.ReadLine();
+
                 goto start;
+            }
+
+            else if (input == "3")
+            {
+                Console.Clear();
+
+                Console.WriteLine("Current library: ");
+                LoadBooks();
+
+                Console.WriteLine("Enter a book number to have it removed: ");
+                string remove = Console.ReadLine();
+                int removeNumber = Convert.ToInt32(remove);
+                Library.Remove(removeNumber);
+
+
+                Console.Clear();
+
+                Console.WriteLine("Book added! Updated Library: ");
+                LoadBooks();
+
+                Console.ReadLine();
+
+                goto start;
+
             }
 
             Console.ReadLine();
 
         }
-
-        //static string UI()
-        //{
-        //    Console.WriteLine("Welcome to the library!");
-        //    Console.WriteLine("Enter a number with the corresponding command; 1: View Books, 2: Add a book");
-        //    string input = Console.ReadLine();
-
-        //    return input;
-
-        //}
 
         static void AddABook(string title, string firstName, string lastName, int numberOfPages, Genre genre)
         {
@@ -85,12 +103,17 @@ namespace LibraryProgram
             Library.Add(book);
         }
 
-        static void LoadBooks()
+        static void StarterBooks()
         {
             AddABook("A Song of Ice and Fire", "George RR", "Martin", 694, Genre.Fantasy);
             AddABook("Shade's Children", "Garth", "Nix", 310, Genre.ScienceFiction);
             AddABook("Skelling", "David", "Almond", 176, Genre.ScienceFiction);
 
+        }
+
+
+        static void LoadBooks()
+        { 
             int counter = 1;
             foreach (Book book in Library)
                 Console.WriteLine($"{counter++} : {book.Title}, {book.Author.Name()}, {book.NumberOfPages}, {book.Genre}");
