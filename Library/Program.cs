@@ -25,8 +25,8 @@ namespace LibraryProgram
         start:
             Console.Clear();
             Console.WriteLine("Enter a number with the corresponding command; \n " +
-                "1: View Book in Library, 2: Add a book, 3: Remove a book from library");
-            // + ", 4: View Book Bag, 5: Borrow a Book, 6: Return a Book ");
+                "1: View Book in Library, 2: Add a book, 3: Remove a book from library"
+                + ", 4: View Book Bag, 5: Borrow a Book, 6: Return a Book ");
             string input = Console.ReadLine();
 
             switch (input)
@@ -60,6 +60,8 @@ namespace LibraryProgram
                     Console.ReadLine();
                     break;
             }
+            Console.WriteLine(" \nPress enter to return to the menu.");
+            Console.ReadLine();
             goto start;
         }
 
@@ -263,7 +265,7 @@ namespace LibraryProgram
             string response = Console.ReadLine();
             int.TryParse(response, out int selection);
             books.TryGetValue(selection, out Book returnedBook);
-            BookBag.Remove(selection);
+            BookBag.Remove(returnedBook);
             Library.Add(returnedBook);
         }
     }
