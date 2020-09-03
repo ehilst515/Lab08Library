@@ -72,10 +72,24 @@ namespace LibraryProgram
             Console.WriteLine("Current library: ");
             LoadBooks();
 
+        bookPrompt:
             Console.WriteLine("Enter a book number to remove it: ");
             string remove = Console.ReadLine();
-            int removeNumber = Convert.ToInt32(remove);
-            Library.Remove(removeNumber);
+
+            int removeNumber;
+            if (int.TryParse(remove, out removeNumber))
+            {
+                if (!Library.Remove(removeNumber - 1))
+                {
+                    Console.WriteLine("Wrong number, dummy");
+                    goto bookPrompt;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Do you know what numbers are?");
+                goto bookPrompt;
+            }
 
             Console.Clear();
 
