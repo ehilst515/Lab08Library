@@ -13,16 +13,18 @@ namespace LibraryProgram
             Library = new Library<Book>();
             StarterBooks();
 
-            Console.WriteLine("Welcome to the library!");
-
-            start:
-
+        start:
+            Console.Clear();
             Console.WriteLine("Enter a number with the corresponding command; 1: View Books, 2: Add a book, 3: Remove a book");
             string input = Console.ReadLine();
 
             if (input == "1")
             {
+                Console.Clear();
+                Console.WriteLine("Books in Library: \n");
                 LoadBooks();
+                Console.WriteLine(" \nPress any key to return to the menu.");
+                Console.ReadLine();
                 goto start;
             }
 
@@ -43,6 +45,12 @@ namespace LibraryProgram
                 int numberNumberOfPages = Convert.ToInt32(inputNumberOfPages);
 
                 Console.WriteLine("Enter number genre:");
+
+                int counter = 1;
+                foreach (Genre genre in Enum.GetValues(typeof(Genre)))
+                    Console.WriteLine($"{counter++} : {genre}");
+
+
                 string inputGenre = Console.ReadLine();
                 int numberGenre = Convert.ToInt32(inputGenre);
 
