@@ -23,7 +23,7 @@ namespace LibraryProgram
                 Console.Clear();
                 Console.WriteLine("Books in Library: \n");
                 LoadBooks();
-                Console.WriteLine(" \nPress any key to return to the menu.");
+                Console.WriteLine(" \nPress enter to return to the menu.");
                 Console.ReadLine();
                 goto start;
             }
@@ -44,23 +44,34 @@ namespace LibraryProgram
                 string inputNumberOfPages = Console.ReadLine();
                 int numberNumberOfPages = Convert.ToInt32(inputNumberOfPages);
 
-                Console.WriteLine("Enter number genre:");
+
+
+            getGenre:
+                Console.WriteLine("Enter a number to assign a genre:");
 
                 int counter = 1;
                 foreach (Genre genre in Enum.GetValues(typeof(Genre)))
                     Console.WriteLine($"{counter++} : {genre}");
-
-
                 string inputGenre = Console.ReadLine();
+
                 int numberGenre = Convert.ToInt32(inputGenre);
 
-                AddABook(inputTitle, inputAuthorFirst, inputAuthorLast, numberNumberOfPages, (Genre)numberGenre);
+                if(numberGenre < 0 || numberGenre > counter - 1)
+                {
+                    Console.WriteLine("Incorrect entery");
+                    goto getGenre;
+                }
+
+                int genreNumber = numberGenre - 1;
+
+                AddABook(inputTitle, inputAuthorFirst, inputAuthorLast, numberNumberOfPages, (Genre)genreNumber);
 
                 Console.Clear();
 
                 Console.WriteLine("Book added! Updated Library: ");
                 LoadBooks();
 
+                Console.WriteLine(" \nPress enter to return to the menu.");
                 Console.ReadLine();
 
                 goto start;
@@ -73,7 +84,7 @@ namespace LibraryProgram
                 Console.WriteLine("Current library: ");
                 LoadBooks();
 
-                Console.WriteLine("Enter a book number to have it removed: ");
+                Console.WriteLine("Enter a book number to remove it: ");
                 string remove = Console.ReadLine();
                 int removeNumber = Convert.ToInt32(remove);
                 Library.Remove(removeNumber);
@@ -84,13 +95,19 @@ namespace LibraryProgram
                 Console.WriteLine("Book added! Updated Library: ");
                 LoadBooks();
 
+                Console.WriteLine(" \nPress enter to return to the menu.");
                 Console.ReadLine();
 
                 goto start;
 
             }
 
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Incorrect command. Press enter to try again.");
+                Console.ReadLine();
+                goto start;
+            }
 
         }
 
