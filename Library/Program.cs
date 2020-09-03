@@ -221,14 +221,14 @@ namespace LibraryProgram
         {
             int counter = 1;
             foreach (Book book in Library)
-                Console.WriteLine($"{counter++} : {book.Title}, {book.Author.Name()}, {book.NumberOfPages}, {book.Genre}");
+                Console.WriteLine($"{counter++} : {book.Title}, {book.Author.Name}, {book.NumberOfPages}, {book.Genre}");
         }
 
         private static void LoadBookBag()
         {
             int counter = 1;
             foreach (Book book in BookBag)
-                Console.WriteLine($"{counter++} : {book.Title}, {book.Author.Name()}, {book.NumberOfPages}, {book.Genre}");
+                Console.WriteLine($"{counter++} : {book.Title}, {book.Author.Name}, {book.NumberOfPages}, {book.Genre}");
         }
 
         private static void BorrowBook()
